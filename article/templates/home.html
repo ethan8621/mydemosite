@@ -35,7 +35,8 @@
                 {% endif %}
 
                 {% if post_list.has_next %}
-                <li><a href="?page={{ post_list.next_page_number }}">Next Page</a></li>
+                    <li><a href="?page={{ post_list.next_page_number }}">Next Page</a></li>
+                {% endif %}
             </ul>
         </div>
     {% endif %}
