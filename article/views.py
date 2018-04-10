@@ -7,7 +7,7 @@ from django.contrib.syndication.views import Feed
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from article.models import Article
-from artical.models import Tag
+from article.models import Tag
 
 
 # Create your views here.
@@ -64,7 +64,7 @@ def aboutMe(request) :
 
 def searchBlog(request) :
     if 's' in request.GET :
-        s = request.GET['s'] :
+        s = request.GET['s']
         if not s :
             return render(request, 'home.html')
         else :
