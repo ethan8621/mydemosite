@@ -7,7 +7,7 @@ class _const():
 
     def __setattr__(self, key, value):
         # self.__dict__
-        if self.__dict__.has_key(key):
+        if key in self.__dict__:
             raise self.ConstError("constant reassignment error!")
         self.__dict__[key] = value
 
