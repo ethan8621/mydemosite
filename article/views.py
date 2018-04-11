@@ -29,7 +29,7 @@ def home(request) :
     return render(request, 'home.html', {'post_list' : post_list})
 
 
-def detail(request, my_args) :
+def detail(request, id) :
     # return HttpResponse("You're looking at my_args %s."%(my_args))
     try :
         post = Article.objects.get(id = str(id))
@@ -49,7 +49,8 @@ def archives(request) :
     return render(request, 'tag.html', {'post_list' : post_list,
                                         'error' : False})
 
-def searchTag(request, tag) :
+
+def search_tag(request, tag) :
     try :
         post_list = Article.objects.filter(category__iexact = tag) # contains
     except Article.DoesNotExist :
@@ -58,11 +59,11 @@ def searchTag(request, tag) :
     return render(request, 'tag.html', {'post_list' : post_list})
 
 
-def aboutMe(request) :
+def about_me(request) :
     return render(request, 'aboutme.html')
 
 
-def searchBlog(request) :
+def search_blog(request) :
     if 's' in request.GET :
         s = request.GET['s']
         if not s :
@@ -76,7 +77,8 @@ def searchBlog(request) :
                 return render(request, 'archives.html', {'post_list' : post_list,
                                                          'error' : False})
 
-def getArticle(request, article_id) :
+
+def get_article(request, article_id) :
     article_max_id = len(Article.objects.all())
     if int(article_id) <= int(article_max_id) :
         post = Article.objects.all()[int(article_id)]
@@ -98,18 +100,15 @@ class RSSFeed(Feed) :
     def items(self) :
         return Article.objects.order_by('-date_time')
 
-
-    def itemTitle(self, item) :
+    def item_title(self, item) :
         return item.title
 
-
-    def itemPubDate(self, item) :
+    def item_pubdate(self, item) :
         return item.date_time
 
-
-    def itemDecription(self, item) :
+    def item_decription(self, item) :
         return item.content
 
 
-def testTemplate(request) :
+def test_template(request) :
     return render(request, 'test.html', {'current_time': datetime.now()})

@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from article import views
+from article.views import RSSFeed
 
+
+"""
+old version
 urlpatterns = [
     path('', views.home),
     path('admin/', admin.site.urls),
@@ -24,4 +28,26 @@ urlpatterns = [
     path('test/', views.testTemplate, name='testTemplate'),
     path('article/<article_id>', views.getArticle, name='getArticle'),
     path('<my_args>', views.detail, name='detail'),
+]
+"""
+
+"""
+how to use path to parser url
+https://blog.csdn.net/qq_40272386/article/details/78800507
+https://docs.djangoproject.com/en/2.0/topics/http/urls/#example
+
+"""
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('test/', views.test_template, name='test_template'),
+    path('^$/', views.home),
+    path('article/<int:article_id>', views.get_article, name='get_article'),
+    path('<int:id>', views.detail, name='detail'),
+    path('aboutme/', views.about_me, name='about_me'),
+    path('tag/', views.search_tag, name='search_tag'),
+    path('search/', views.search_blog, name='search_blog'),
+    path('archives/', views.archives, name='archives'),
+    path('feeds/', RSSFeed(), name='RSS'),
 ]

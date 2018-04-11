@@ -10,8 +10,7 @@
                 <h2 class="post-title"><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h2>
                 <p class="post-meta">
                     Time：<a class="post-author" href="#">{{ post.date_time |date:'Y M d'}}</a>&nbsp&nbsp
-                    Category: <a class="post-category post-cate-pure" href="{% url 'search
-           _tag' tag=post.category %}">{{ post.category|title }}</a>&nbsp&nbsp
+                    Category: <a class="post-category post-cate-pure" href="{% url 'search_tag' tag=post.category %}">{{ post.category|title }}</a>&nbsp&nbsp
                     Tag:
                         {% for tag in post.tag.all %}
                     <a class="post-category post-category-pure" href="#">{{ tag }}</a>
